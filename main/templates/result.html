@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+    <script>
+        function searchUser() {
+            let userId = document.getElementById("search").value;
+            location.href = "/search/" + userId;
+        }
+        function enterKeyUp(e) {
+            if (e.keyCode === 13) {
+                searchUser();
+            }
+	    }
+
+    </script>
+</head>
+<body>
+  <div class="container">
+      <h1 class="text">Result</h1>
+      <div class="search">
+        <div class="searchbar-box2">
+          <input type="text" id="search" onkeyup="enterKeyUp(event)" placeholder="Search..." class="searchbar2"/>
+            <a type="button" onclick="searchUser()" class="icon2" role="button">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
