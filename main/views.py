@@ -60,10 +60,10 @@ def search(request, user_id):
                 else:
                     level += str(6-val)
                 problem = Problem_class(tempProblems.iat[i, 1],
-                                        tempProblems.iat[i, 2],
+                                        tempProblems.iat[i, tempProblems.shape[1]-1],
                                         level)
                 problem_list.append(problem)
-    problem_list.sort(key= lambda x: x.problemLevel, reverse=True)
+    problem_list.sort(key= lambda x: x.problemLevel)
     # 25개 중에 5개 고르기
 
 
@@ -72,7 +72,7 @@ def search(request, user_id):
         request,
         'result.html',
         {
-            'problemList': problem_list[:5]
+            'problemList': problem_list[:10]
         }
     )
 
@@ -191,8 +191,8 @@ def Cal_distance(result, target_index):
     problem = problem.drop_duplicates()
     sorter = []
     for i in range(len(result)):
-        sorter.append(pow(result.iat[i, 1] - problem.iat[target_index, 1], 2))
-    result['sorter'] = sorter
+        sorter.append(pow(result.iat[i, 2] - problem.iat[target_index, 2], 2))
+    result.insert(len(result.columns), 'sorter', sorter, True)
     return result
 
 
@@ -209,4 +209,6 @@ def get_recommand_problem(problem_sim, problemId, top=30):
 
         result = problem.iloc[sim_index]
         result = Cal_distance(result, target_problem_index[0])
-        return result.sort_values('sorter')[:5]
+        result = result.sort_values('sorter')[:10]
+        result.to_csv('data/test.csv')
+        return result
