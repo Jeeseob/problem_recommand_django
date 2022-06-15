@@ -31,7 +31,11 @@
                 <i class="fas fa-search"></i>
             </a>
         </div>
+          <br/>
       </div>
+         {% for problem in problemList %}
+         <h3>{{ problem.problemId }} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  {{ problem.problemLevelString }} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.acmicpc.net/problem/{{ problem.problemId }}">https://www.acmicpc.net/problem/{{ problem.problemId }}</a></h3><br/>
+        {% endfor %}
   </div>
 </body>
 </html>
