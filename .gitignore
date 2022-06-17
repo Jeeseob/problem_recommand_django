@@ -115,6 +115,7 @@ data/
 # Spyder project settings
 .spyderproject
 .spyproject
+.zip
 
 # Rope project settings
 .ropeproject
